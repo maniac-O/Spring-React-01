@@ -1,4 +1,4 @@
-package com.apache.gradle.gradle.controller;
+package com.velog.maniac.controller;
 
 public class User {
     int id;

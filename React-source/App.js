@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Axios from 'axios';
+import customAxios from './customAxios';
 
 function App() {
-    const [user, setUser] = useState('');
+    // IP주소 변수 선언
+    const [ip, setIp] = useState('');
+
+    // IP주소 값을 설정합니다.
+    function callback(data) {
+        setIp(data);
+    }
+
+    // 첫번째 렌더링을 다 마친 후 실행합니다.
     useEffect(() => {
-        Axios.post('/api/users').then((response) => {
-            if (response.data) {
-                console.log(response.data);
-                setUser(response.data);
-            } else {
-                alert('failed to ');
-            }
-        });
+        // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
+        customAxios('/ip', callback);
     }, []);
 
     return (
         <div className="App">
             <header className="App-header">
-                <h1>{user.id}</h1>
-                <h1>{user.username}</h1>
-                <h1>{user.password}</h1>
-                <h1>{user.email}</h1>
+                이 기기의 IP주소는 {ip}입니다. 
             </header>
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload
-            </p>
         </div>
     );
 }
