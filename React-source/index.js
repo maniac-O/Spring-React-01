@@ -4,8 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// react 공식문서 확인
+// index.js가 기본 실행
 function Square(props){
-  console.log(props.value);
   return (
     <button 
       className="square" 
@@ -90,8 +91,9 @@ class Game extends React.Component {
     if(calculateWinner(squares) || squares[i]){
       return;
     }
-
+    console.log(history);
     squares[i] = this.state.xIsNext ? 'X' : 'O';
+    console.log("squares: "+squares);
     this.setState({
       history: history.concat([{
         squares:squares,
