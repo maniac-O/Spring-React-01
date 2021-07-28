@@ -11,10 +11,11 @@ public class MovieGroup {
     }
 
     public List<Movie> getList() {
-        return list;
+        return this.list;
     }
 
     public List<Movie> getListOrderRating() {
+        System.out.println("MovieGroup.java");
         return list.stream().filter(b -> !((Float) b.getUserRating()).equals(0.0f))
                 .sorted((a, b) -> b.getUserRating() > a.getUserRating() ? 1 : -1).collect(Collectors.toList());
     }

@@ -19,6 +19,7 @@ public class SearchController {
 
     @GetMapping("/movies")
     public List<Movie> getMoviesByQuery(@RequestParam(name = "q") String query) {
+        System.out.println("SearchController.java");
         return movieService.search(query);
     }
 

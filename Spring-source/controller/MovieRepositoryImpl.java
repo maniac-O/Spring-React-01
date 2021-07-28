@@ -28,6 +28,7 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String url = naverProperties.getMovieUrl() + "?query=" + query;
 
+        System.out.println("MovieRepositoryImpl.java");
         return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity(httpHeaders), ResponseMovie.class).getBody()
                 .getItems().stream()
                 .map(m -> Movie.builder().title(m.getTitle()).link(m.getLink()).userRating(m.getUserRating()).build())
