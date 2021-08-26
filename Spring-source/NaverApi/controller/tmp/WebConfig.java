@@ -1,4 +1,4 @@
-package com.velog.maniac.controller.tmp;
+package com.velog.maniac.NaverApi.controller.tmp;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

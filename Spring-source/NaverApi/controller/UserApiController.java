@@ -1,4 +1,6 @@
-package com.velog.maniac.controller;
+package com.velog.maniac.NaverApi.controller;
+
+import com.velog.maniac.NaverApi.controller.tmp.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

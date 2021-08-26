@@ -1,10 +1,11 @@
-package com.velog.maniac.controller;
+package com.velog.maniac.NaverApi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -12,6 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseMovie {
+
+    private Timestamp lastBuildDate;
 
     private List<Item> items;
 
@@ -25,7 +28,5 @@ public class ResponseMovie {
         private String actor;
         private String director;
         private float userRating;
-        // ...TODO: 필드 추가
-
     }
 }

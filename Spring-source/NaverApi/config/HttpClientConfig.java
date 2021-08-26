@@ -1,4 +1,4 @@
-package com.velog.maniac.controller;
+package com.velog.maniac.NaverApi.config;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;

@@ -1,8 +1,12 @@
-package com.velog.maniac.controller;
-
-import org.springframework.stereotype.Service;
+package com.velog.maniac.NaverApi.service;
 
 import java.util.List;
+
+import com.velog.maniac.NaverApi.handler.ClientNoContentRuntimeException;
+import com.velog.maniac.NaverApi.model.Movie;
+import com.velog.maniac.NaverApi.repository.MovieRepository;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class MovieService {
@@ -19,7 +23,16 @@ public class MovieService {
 
     public List<Movie> search(final String query) {
         System.out.println("MovieService.java");
+
         MovieGroup movieGroup = new MovieGroup(movieRepository.findByQuery(query));
         return movieGroup.getListOrderRating();
+    }
+
+    public Movie recommendTodayMovie() {
+        var query = "테스트쿼리 검색결과없음";
+
+        MovieGroup movieGroup = new MovieGroup(movieRepository.findByQuery(query));
+
+        return movieGroup.getHighestRatingMovie().orElseThrow(ClientNoContentRuntimeException::new);
     }
 }

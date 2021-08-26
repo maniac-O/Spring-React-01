@@ -1,13 +1,17 @@
-package com.velog.maniac.controller;
+package com.velog.maniac.NaverApi.repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.velog.maniac.NaverApi.config.NaverProperties;
+import com.velog.maniac.NaverApi.model.Movie;
+import com.velog.maniac.NaverApi.model.ResponseMovie;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class MovieRepositoryImpl implements MovieRepository {
@@ -28,11 +32,15 @@ public class MovieRepositoryImpl implements MovieRepository {
 
         String url = naverProperties.getMovieUrl() + "?query=" + query;
 
-        System.out.println("MovieRepositoryImpl.java");
-        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity(httpHeaders), ResponseMovie.class).getBody()
-                .getItems().stream()
-                .map(m -> Movie.builder().title(m.getTitle()).link(m.getLink()).userRating(m.getUserRating()).build())
+        ResponseMovie response = restTemplate
+                .exchange(url, HttpMethod.GET, new HttpEntity(httpHeaders), ResponseMovie.class).getBody();
+
+        List<Movie> responseItems = response
+                .getItems().stream().map(m -> Movie.builder().title(m.getTitle()).link(m.getLink())
+                        .userRating(m.getUserRating()).lastBuildDate(response.getLastBuildDate()).build())
                 .collect(Collectors.toList());
+
+        return responseItems;
 
     }
 }

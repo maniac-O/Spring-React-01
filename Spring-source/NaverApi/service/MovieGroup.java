@@ -1,7 +1,10 @@
-package com.velog.maniac.controller;
+package com.velog.maniac.NaverApi.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import com.velog.maniac.NaverApi.model.Movie;
 
 public class MovieGroup {
     private final List<Movie> list;
@@ -18,5 +21,10 @@ public class MovieGroup {
         System.out.println("MovieGroup.java");
         return list.stream().filter(b -> !((Float) b.getUserRating()).equals(0.0f))
                 .sorted((a, b) -> b.getUserRating() > a.getUserRating() ? 1 : -1).collect(Collectors.toList());
+    }
+
+    public Optional<Movie> getHighestRatingMovie() {
+
+        return getListOrderRating().stream().findFirst();
     }
 }
